@@ -171,7 +171,11 @@ struct Player
                 Vector2Add(sprite.position, Vector2({6.0f, -10.0f})), GetTexture("bullet")
             );
             bulletPool.push_back(newBullet);
-            if (isSFXOn) PlaySound(soundMap["shoot"]);
+            
+            Sound shoot = soundMap["shoot"];
+            float pitch = GetRandomValue(80, 120) / 100.0f; // 0.80 to 1.20
+            SetSoundPitch(shoot, pitch);
+            if (isSFXOn) PlaySound(shoot);
             // std::cout << bulletPool.size() << "\n";
         }
 
@@ -336,7 +340,7 @@ struct Game {
 
             std::string killScoreText = std::to_string(killScore);
             const char* killScoreStr = killScoreText.c_str();
-            Vector2 killScoreTextSize = MeasureTextEx(defaultFont, killScoreStr, 60.0f, 0);
+            Vector2 killScoreSize = MeasureTextEx(defaultFont, killScoreStr, 60.0f, 0);
 
             std::string gameOverLabel = "Game Over";
             Vector2 gameOverLabelSize = MeasureTextEx(defaultFont, gameOverLabel.c_str(), 90.0f, 0);
@@ -416,8 +420,8 @@ struct Game {
             else
             {
                 DrawTextEx(defaultFont, aliveScoreStr, Vector2({(WINDOW_WIDTH - aliveScoreTextSize.x)/2.0f, 100.0f}), FONT_SIZE, 0, BLACK);
-                DrawTextEx(defaultFont, killLabel.c_str(), Vector2({killLabelSize.x - 10.0f, 20.0f}), 30.f, 0, BLACK);
-                DrawTextEx(defaultFont, killScoreStr, Vector2({(killScoreTextSize.x) + 50.f, 50.0f}), 60.f, 0, BLACK);
+                DrawTextEx(defaultFont, killLabel.c_str(), Vector2({killScoreSize.x/2.0f, 20.0f}), 30.f, 0, BLACK);
+                DrawTextEx(defaultFont, killScoreStr, Vector2({(killLabelSize.x/2.0f), 50.0f}), 60.f, 0, BLACK);
                 player.sprite.draw();
                 for (Asteroid &a : asteroidPool)
                 {

@@ -15,3 +15,5 @@ settings.json
 .clangd
 *.dSYM
 celesteclone
+web/
+.DS_Store

@@ -21,8 +21,8 @@ void ImportFonts()
 
 void ImportAudio() 
 {
-    backgroundMusic = LoadMusicStream("my_games/asteroids/gravity_waves_track.ogg");
-    soundMap["shoot"] = LoadSound("my_games/asteroids/shoot_sfx.ogg");
+    backgroundMusic = LoadMusicStream("my_games/asteroids/gravity_waves_track.wav");
+    soundMap["shoot"] = LoadSound("my_games/asteroids/shoot_sfx.wav");
 }
 
 Texture2D GetTexture(const std::string& name) {
